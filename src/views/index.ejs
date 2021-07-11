@@ -1,0 +1,60 @@
+<%- include('partials/header'); -%>
+
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add-pago" method="POST">
+                            <div class="input-group mb-3">
+                                <select class="form-select" aria-label="Selecciona Contenedor" name="to">
+                                    <option selected>Open this select menu</option>
+                                    <% clientes.forEach(function(clientOne) { %>
+                                    <option value=<%= clientOne._id %>> <%= clientOne.name %> </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Litros: </span>
+                                <input type="text" class="form-control" placeholder="000.00" name="liters">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Total $</span>
+                                <input type="text" class="form-control" placeholder="Precio Final" name="price">
+                            </div>
+                            <button class="btn btn-block btn-outline-primary" type="submit"
+                                id="button-addon2">ACEPTAR</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- DATABASE TABLE -->
+            <div class="col-md-7">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Litros</th>
+                            <th>Fecha</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cargas.forEach(function (tl) { %>
+                            <tr>
+                                <td><%= tl._id %></td>
+                                <td><%= tl.liters %></td>
+                                <td><%= format(tl.created_at) %></td>
+                                <td>
+                                    <a href="/delete/<%= tl._id %>" class="btn btn-outline-danger">Delete</a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer'); -%>
