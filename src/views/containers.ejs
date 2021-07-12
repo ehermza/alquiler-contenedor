@@ -1,0 +1,56 @@
+<%- include('partials/header'); -%>
+
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add-client" method="POST">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Container: </span>
+                                <input type="text" class="form-control" placeholder="00" name="id_container">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Cliente: </span>
+                                <input type="text" class="form-control" placeholder="Apellido, Nombre" name="rented_by">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Valor Mensual $</span>
+                                <input type="text" class="form-control" placeholder="5000" name="price_tocharge">
+                            </div>
+                            <button class="btn btn-block btn-primary" type="submit"
+                                id="button-addon2">ACEPTAR</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- DATABASE TABLE -->
+            <div class="col-md-7">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cliente</th>
+                            <th>Precio-Cobrar</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% containers.forEach(function (ct) { %>
+                            <tr>
+                                <td><%= ct.id_container %></td>
+                                <td><%= ct.rented_by %></td>
+                                <td>$ <%= ct.price_tocharge %></td>
+                                <td>
+                                    <a href="/delete-ctdor/<%= ct._id %>" class="btn btn-outline-danger">Delete</a>
+                                    <a href="/containers/edit/<%= ct._id %>" class="btn btn-outline-warning">Edit</a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer'); -%>

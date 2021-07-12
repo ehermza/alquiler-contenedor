@@ -5,50 +5,25 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/addclient" method="POST">
+                        <form action="/containers/edit/<%= container._id %>" method="POST">
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Cliente: </span>
-                                <input type="text" class="form-control" placeholder="Apellido, Nombre" name="name_client">
+                                <span class="input-group-text">Container: </span>
+                                <input type="text" readonly value='<%= container.id_container %>' class="form-control" placeholder="00" name="id_container">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Contenedor Id: </span>
-                                <input type="text" class="form-control" placeholder="00" name="id_container">
+                                <span class="input-group-text">Cliente: </span>
+                                <input type="text" value='<%= container.rented_by %>' class="form-control" placeholder="Apellido, Nombre" name="rented_by">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Valor Mensual $</span>
-                                <input type="text" class="form-control" placeholder="5000" name="price_tocharge">
+                                <input type="text" value='<%= container.price_tocharge %>' class="form-control" placeholder="5000" name="price_tocharge">
                             </div>
-                            <button class="btn btn-block btn-outline-primary" type="submit"
-                                id="button-addon2">ACEPTAR</button>
+                            <button class="btn btn-block btn-success" type="submit"
+                                id="button-addon2">UPDATE</button>
 
                         </form>
                     </div>
                 </div>
-            </div>
-            <!-- DATABASE TABLE -->
-            <div class="col-md-7">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Cliente</th>
-                            <th>Precio-Cobrar</th>
-                            <th>Activo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% clientes.forEach(function (cl) { %>
-                            <tr>
-                                <td><%= cl.id_container %></td>
-                                <td><%= cl.name_client %></td>
-                                <td><%= format(cl.created_at) %></td>
-                                <td>
-                                    <a href="/delete/<%= tl._id %>" class="btn btn-outline-danger">Delete</a>
-                                </td>
-                            </tr>
-                            <% }); %>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

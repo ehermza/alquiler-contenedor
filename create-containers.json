@@ -1,0 +1,7 @@
+{
+    id_container: 2
+    price_tocharge: { type: Number, required: true },
+    rented_by: { type: String, required: true },
+    active: Boolean,
+
+}

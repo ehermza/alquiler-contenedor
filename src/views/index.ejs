@@ -9,8 +9,8 @@
                             <div class="input-group mb-3">
                                 <select class="form-select" aria-label="Selecciona Contenedor" name="to">
                                     <option selected>Open this select menu</option>
-                                    <% clientes.forEach(function(clientOne) { %>
-                                    <option value=<%= clientOne._id %>> <%= clientOne.name %> </option>
+                                    <% clientes.forEach(function(oneClient) { %>
+                                    <option value=<%= oneClient._id %>> <%= oneClient.name %> </option>
                                         <% }); %>
                                 </select>
                             </div>

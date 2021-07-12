@@ -5,9 +5,9 @@ const ContainerSchema = new Schema({
     price_tocharge: { type: Number, required: true },
     rented_by: { type: String, required: true },
     active: Boolean,
-    last_payment: Date,
-    date_init: Date,
-    date_finish: { type: Date, default: null }
+    // last_payment: Date,
+    // date_init: Date,
+    // date_finish: { type: Date, default: null }
 });
 
 module.exports = model('container', ContainerSchema);
