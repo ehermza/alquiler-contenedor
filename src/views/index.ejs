@@ -9,8 +9,8 @@
                             <div class="input-group mb-3">
                                 <select class="form-select" aria-label="Selecciona Contenedor" name="to">
                                     <option selected>Open this select menu</option>
-                                    <% clientes.forEach(function(oneClient) { %>
-                                    <option value=<%= oneClient._id %>> <%= oneClient.name %> </option>
+                                    <% pagos.forEach(function(lpago) { %>
+                                    <option value=<%= lpago._id %>> <%= lpago.name %> </option>
                                         <% }); %>
                                 </select>
                             </div>
@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% cargas.forEach(function (tl) { %>
+                        <% pagos.forEach(function (tl) { %>
                             <tr>
                                 <td><%= tl._id %></td>
                                 <td><%= tl.liters %></td>
