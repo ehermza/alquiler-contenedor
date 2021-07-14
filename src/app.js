@@ -4,8 +4,8 @@ const morgan = require('morgan');
 // const {format} = require('timeago.js')
 const { format } = require('timeago.js')
 
-const IndexRoutes = require("./routes/index");
-const MasRutas = require("./routes/container");
+const IndexPagos = require("./routes/pagos");
+const IndexCtdor = require("./routes/container");
 const app = express();
 
 
@@ -27,8 +27,8 @@ app.use((req, res, next) => {
 });
 
 // importing routes
-app.use('/', IndexRoutes);
-app.use('/', MasRutas);
+app.use('/', IndexPagos);
+app.use('/', IndexCtdor);
 
 // local variables
 require('./database');

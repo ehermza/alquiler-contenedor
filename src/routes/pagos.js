@@ -1,16 +1,19 @@
 const { Router } = require("express");
 const Pago = require("../models/Pago");
+const Ctdor = require("../models/Container");
 
 const router = Router();
 
 router.get('/', async (req, res) => {
     // Show all the payments of all clients.
     const pagos = await Pago.find();
-    res.render('index', { pagos: pagos });
+    const ctdor = await Ctdor.find();
+
+    res.render('index', { pagos: pagos, containers: ctdor });
 });
 
-router.post('/add-pay', async (req, res) => {
-    console.log("Adding pago to database...");
+router.post('/pagos/add', async (req, res) => {
+    console.log("Adding payment to database...");
 
     const pago = new Pago(req.body);
     await pago.save();
@@ -19,7 +22,8 @@ router.post('/add-pay', async (req, res) => {
 });
 
 // 
-router.get('/delete/:getid', async (req, res, next) => {
+router.get('/pagos/delete/:getid', async (req, res, next) => {
+    // Delete the selected paid  
     const { getid } = req.params;
     const pago = await Pago.findByIdAndDelete(getid);
     console.log(`Delete pago: /${getid}`);
