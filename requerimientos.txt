@@ -1,0 +1,37 @@
+
+ALQUILER CONTENEDORES REQUERIMIENTOS
+
+[]  /views/index.ejs
+    Create a new container "Clients" with a select object for to view the last pays of that client.
+     to press button 'Ver Pagos': when user select a Client, the server get all data pays from client since database and will write them to the table
+     on page /views/index.ejs
+
+[]  /views/index.ejs
+    Pays Table Columns: 
+    #(id_container), Cliente(rented_by), Importe(value), Fecha(paid_at), Recibo(recibo_n), 
+       Action(Delete,)
+
+[]  /views/index.ejs
+    Actions Column: Add an advert to Delete Button to confirm the operation.
+
+[]  /views/index.ejs
+    Add a response message when the success action is executed. ::Green
+    Add a response message when the user action is failure. ::Red
+
+
+[]  /views/index.ejs
+    'Fecha' Column: Change the current format to something like "dd/mm/yyyy"
+
+[]   /views/containers.ejs  
+    input "Valor mensual" (value): Forbit the caracters not numerics, Aggregate an Advert!
+    
+[]   Change profile.ejs to /views/ctdor-profile.ejs  >> /routes/containers/edit/#
+    input Client property: set readonly Add an Edit Button FOR Change Client
+        Goto the New Page: /views/client-profile.ejs
+    
+[X]  CLIENT: Desing and create the profile Client model (/model/Client.js)
+[]        and the web page, to write all person data. (/views/client.ejs)
+        Properties: 
+            idClient (_id-mongo), NAME, Telephone, DNI, business,
+
+
