@@ -1,23 +1,25 @@
 const { Router } = require("express");
- const Client = require("../models/Client");
+const Client = require("../models/Client");
 //const Pago = require("../models/Pago");
 
 const router = Router();
 
 router.get('/clients/edit/:idclient', async (req, res) => {
     // Show data person of one client.
-    const {idclient}= req.params;
-    const cliente = await Client.find({_id: idclient});
+    const { idclient } = req.params;
+    const cliente = await Client.find({ _id: idclient });
     res.render('profile', { container: container });
 });
 
-router.post('/clients/edit', async (req, res) => {
-    console.log("Adding a new client to database...");
+router.post('/clients/edit/:idclient', async function (req, res) 
+{
+    const { idclient } = req.params;
+    // console.log(`Cliente: ${req.body}`)
 
-    const cliente = new Client(req.body);
-    await cliente.save();
+    const cliente = await Client.findByIdAndUpdate(idclient, req.body);
 
-    res.redirect('/');
+    console.log("Update the client to database...");
+    res.redirect('/containers');
 });
 
 // router.get('/delete/:getid', async(req, res,next) => {

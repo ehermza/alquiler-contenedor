@@ -26,7 +26,7 @@
                                 <input type="text" class="form-control" placeholder="000000" name="recibo_n">
                             </div>
                             <button class="btn btn-block btn-outline-primary" type="submit"
-                                id="button-addon2">ACEPTAR</button>
+                                id="btn-addpay">ACEPTAR</button>
 
                         </form>
                     </div>
@@ -50,7 +50,7 @@
                             <tr>
                                 <td><%= py.client %></td>
                                 <td><%= py.value %></td>
-                                <td><%= format(py.paid_at) %></td>
+                                <td><%= dateFormat(py.paid_at, "mmmm dd, yyyy") %></td>
                                 <td>0<%= py.recibo_n %></td>
                                 <td>
                                     <a href="/pagos/delete/<%= py._id %>" class="btn btn-outline-danger">Delete</a>

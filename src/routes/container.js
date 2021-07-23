@@ -9,7 +9,20 @@ const router = Router();
 router.get('/containers', async (req, res) => {
     // List all containers from database...
     const containers = await Container.find();
-    res.render('containers', { containers: containers });
+    res.render('containers', { containers: containers, alert: '' });
+});
+
+router.get('/containers/t/:id', async function (req, res) {
+    const { id } = req.params;
+    console.log(`get url id: ${id}`);
+    var alert = "";
+    if (id.indexOf('430')!=-1) {
+        alert = "Problemas al hacer eso!"
+    }
+    console.log(`Alert: ${alert}`);
+
+    const containers = await Container.find();
+    res.render('containers', { containers: containers, alert: alert });
 });
 
 router.get('/containers/edit/:getid', async (req, res) => {
@@ -62,12 +75,15 @@ router.post('/containers/add/', async (req, res) => {
     var habilitar = true;
 
     console.log("Adding a new client to database...");
-    console.log(req.body);
+    // console.log(req.body);
 
     habilitar = validar_id(req);
     habilitar = (habilitar) ? validar_client(req) : false;
     habilitar = (habilitar) ? validar_price(req) : false;
+    if (!habilitar) {
+        res.redirect('/containers/t/430');
 
+    }
     if (habilitar) {
         const cliente = new Client();
         cliente.name = req.body.rented_by;

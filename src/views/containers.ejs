@@ -13,8 +13,9 @@
                             <div class="input-group mb-3">
                                 <select class="form-select" aria-label="Default" name="id_container">
                                     <option selected>Elegir Contenedor</option>
-                                    <% for(var i= 1; i< 28; i++) {%>
-                                        <option value="<%= i %>">Ct. <%= i %></option>
+                                    <% for(var i=1; i< 28; i++) {%>
+                                        <option value="<%= i %>">Ct. <%= i %>
+                                        </option>
                                         <% } %>
                                 </select>
                             </div>
@@ -23,15 +24,24 @@
                                 <input type="text" class="form-control" placeholder="Apellido, Nombre" name="rented_by">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Valor Mensual $</span>
-                                <input type="text" class="form-control" placeholder="5000" name="price_tocharge">
+                                <span class="input-group-text">Importe $</span>
+                                <input type="number" class="form-control" placeholder="0.00" step="1"
+                                    name="price_tocharge">
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="button-addon2">ACEPTAR</button>
 
                         </form>
                     </div>
                 </div>
+                <!-- ALERT MESSAGE TO TRY DELETE  -->
+                <% if(alert!='') { %>
+                <div class="alert alert-dismissible alert-danger">
+                    <%= alert %>
+                </div>
+                <% } %>
+
             </div>
+
             <!-- DATABASE TABLE -->
             <div class="col-md-7">
                 <table class="table table-hover">
@@ -39,7 +49,7 @@
                         <tr>
                             <th>#</th>
                             <th>Cliente</th>
-                            <th>Precio-Cobrar</th>
+                            <th>Precio/mes</th>
                             <th>Action</th>
                         </tr>
                     </thead>

@@ -23,17 +23,17 @@ ALQUILER CONTENEDORES REQUERIMIENTOS
        Action(Delete,)
 
 []  /views/index.ejs
-    Actions Column: Add an advert to Delete Button to confirm the operation.
+    Actions Column: Add an advert when press Delete Button to confirm the operation.
 
-[]  /views/index.ejs
+[]  /views/containers.ejs
     Add a response message when the success action is executed. ::Green
-    Add a response message when the user action is failure. ::Red
+[X]    Add a response message when the user action is failure. ::Red
 
 
-[]  /views/index.ejs
+[X]  /views/index.ejs
     'Fecha' Column: Change the current format to something like "dd/mm/yyyy"
 
-[]   /views/containers.ejs  
+[x]   /views/containers.ejs  
     input "Valor mensual" (value): Forbit the caracters not numerics, Aggregate an Advert!
     
 []   Change profile.ejs to /views/ctdor-profile.ejs  >> /routes/containers/edit/#
