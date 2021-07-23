@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const Container = require("../models/Container");
+const Client = require("../models/Client");
+
 // const Pago = require("../models/Pago");
 
 const router = Router();
@@ -14,8 +16,14 @@ router.get('/containers/edit/:getid', async (req, res) => {
     // Get One Container to edit properties...
     const { getid } = req.params;
     const container = await Container.findById(getid);
-    console.log("Edit container # " + req.params.id);
-    res.render('profile', { container: container });
+
+    // Get One Client to edit properties...
+    const { rented_by_id } = container;
+    const cliente = await Client.findById(rented_by_id);
+    console.log(`Client: ${cliente}`);
+
+    console.log("Edit container # " + getid);
+    res.render('profile', { container: container, cliente: cliente });
 });
 
 router.post('/containers/edit/:getid', async (req, res) => {
@@ -61,7 +69,13 @@ router.post('/containers/add/', async (req, res) => {
     habilitar = (habilitar) ? validar_price(req) : false;
 
     if (habilitar) {
+        const cliente = new Client();
+        cliente.name = req.body.rented_by;
+        await cliente.save();
+        console.log(`Client properties: ${cliente}`)
+
         const ctdor = new Container(req.body);
+        ctdor.rented_by_id = cliente._id;
         await ctdor.save();
     }
     res.redirect('/containers');

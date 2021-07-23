@@ -1,20 +1,21 @@
 const { Router } = require("express");
- const Container = require("../models/Container");
+ const Client = require("../models/Client");
 //const Pago = require("../models/Pago");
 
 const router = Router();
 
-router.get('/profile', async(req, res) => {
-    // Show all the payments of all clients.
-    const container = await Container.find();
-    res.render('profile', { container });
+router.get('/clients/edit/:idclient', async (req, res) => {
+    // Show data person of one client.
+    const {idclient}= req.params;
+    const cliente = await Client.find({_id: idclient});
+    res.render('profile', { container: container });
 });
 
-router.post('/add-client', async (req, res) => {
+router.post('/clients/edit', async (req, res) => {
     console.log("Adding a new client to database...");
 
-    const client = new Cliente(req.body);
-    await client.save();
+    const cliente = new Client(req.body);
+    await cliente.save();
 
     res.redirect('/');
 });

@@ -1,25 +1,57 @@
 <%- include('partials/header'); -%>
 
-    <div class="container p-4">
+    <div class="container p-3">
         <div class="row">
+            <!-- CONTAINER PROFILE -->
             <div class="col-md-5">
-                <div class="card">
+                <div class="card border-primary mb-3" style="min-width: 20rem;">
+                    <div class="card-header">
+                        <h3 class="text-center">Contenedor</h3>
+                    </div>
                     <div class="card-body">
                         <form action="/containers/edit/<%= container._id %>" method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Container: </span>
-                                <input type="text" readonly value='<%= container.id_container %>' class="form-control" placeholder="00" name="id_container">
+                                <input type="text" readonly value='<%= container.id_container %>' class="form-control"
+                                    placeholder="00" name="id_container">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Cliente: </span>
-                                <input type="text" value='<%= container.rented_by %>' class="form-control" placeholder="Apellido, Nombre" name="rented_by">
+                                <input type="text" value='<%= container.rented_by %>' class="form-control"
+                                    placeholder="Apellido, Nombre" name="rented_by">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Valor Mensual $</span>
-                                <input type="text" value='<%= container.price_tocharge %>' class="form-control" placeholder="5000" name="price_tocharge">
+                                <input type="text" value='<%= container.price_tocharge %>' class="form-control"
+                                    placeholder="5000" name="price_tocharge">
                             </div>
-                            <button class="btn btn-block btn-success" type="submit"
-                                id="button-addon2">UPDATE</button>
+                            <button class="btn btn-block btn-success" type="submit" id="button-addon2">UPDATE</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLIENT PROFILE  -->
+            <div class="col-md-6">
+                <div class="card border-primary mb-3" style="max-width: 60rem;">
+                    <div class="card-header">
+                        <h3>Datos del Cliente</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/clients/edit/<%= cliente._id %>" method="POST">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Nombre Cliente</span>
+                                <input type="text" class="form-control" value=<%=cliente.name %> />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Telefono</span>
+                                <input type="text" class="form-control" value=<%=cliente.telephone %> />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Empresa</span>
+                                <input type="text" class="form-control" value="<%= cliente.business %>" />
+                            </div>
 
                         </form>
                     </div>

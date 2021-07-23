@@ -1,6 +1,17 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
 
+
+[]  /views/profile.ejs   
+    Url GET: /containers/edit/:_id
+    Two forms will be displayed on this page: *Container and *Client
+        Container inputs: Container(id_ctdor), Cliente(rented_by) readonly, Importe(value),
+        Buttons:    Set Changes, 
+                    Dar Baja: Set to property 'active: false' from table Client - Update Container table that contains this client.
+                    New Client: Client(req.body).save() to mongoose,
+        Client inputs: Cliente(_id), Nombre(name), Celular(Telephone), CUIT(DNI), Empresa(business),
+        Url POST: /clients/edit/:_id
+
 []  /views/index.ejs
     Create a new container "Clients" with a select object for to view the last pays of that client.
      to press button 'Ver Pagos': when user select a Client, the server get all data pays from client since database and will write them to the table
