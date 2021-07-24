@@ -34,6 +34,7 @@ app.use('/', IndexClient);
 
 // local variables
 require('./database');
+app.use(express.static(__dirname + '/public'));
 
 // Starting...
 app.listen(app.get('port'), () => {

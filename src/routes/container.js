@@ -8,20 +8,35 @@ const router = Router();
 
 router.get('/containers', async (req, res) => {
     // List all containers from database...
-    const containers = await Container.find();
+    const containers = await Container.find({ rented_by: { $ne: '' } });
     res.render('containers', { containers: containers, alert: '' });
 });
+
+router.get('/containers/unlink/:idcont', async function (req, res) {
+    const { idcont } = req.params;
+    await Container.findByIdAndUpdate(idcont, {
+        rented_by: '',
+        rented_by_id: '-1',
+        active: false
+    });
+    res.redirect('/containers');
+})
 
 router.get('/containers/t/:id', async function (req, res) {
     const { id } = req.params;
     console.log(`get url id: ${id}`);
     var alert = "";
-    if (id.indexOf('430')!=-1) {
-        alert = "Problemas al hacer eso!"
+    if (id.indexOf('430') != -1) {
+        alert = "Datos mal ingresados. Intenta de vuelta!"
+    } else if (id.indexOf('310') != -1) {
+        alert = "readonly";
+    } else if (id.indexOf('259') != -1) {
+        alert = "El Ctdor elegido ya se encuentra alquilado.";
     }
     console.log(`Alert: ${alert}`);
 
-    const containers = await Container.find();
+    // const containers = await Container.find();
+    const containers = await Container.find({ rented_by: { $ne: '' } });
     res.render('containers', { containers: containers, alert: alert });
 });
 
@@ -71,6 +86,12 @@ function validar_price(req) {
     return false;
 }
 
+async function isCtdorWithClient(req) {
+    const { id_container } = req.body;
+    const ctdor = await Container.findById(id_container);
+    return (ctdor.rented_by != '');
+}
+
 router.post('/containers/add/', async (req, res) => {
     var habilitar = true;
 
@@ -82,18 +103,23 @@ router.post('/containers/add/', async (req, res) => {
     habilitar = (habilitar) ? validar_price(req) : false;
     if (!habilitar) {
         res.redirect('/containers/t/430');
-
+        return;
     }
-    if (habilitar) {
-        const cliente = new Client();
-        cliente.name = req.body.rented_by;
-        await cliente.save();
-        console.log(`Client properties: ${cliente}`)
-
-        const ctdor = new Container(req.body);
-        ctdor.rented_by_id = cliente._id;
-        await ctdor.save();
+    if (isCtdorWithClient(req)) {
+        res.redirect('/containers/t/259');
+        return;
     }
+    /* Creando Cliente nuevo para agregarlo a base datos
+            ehermza@github.com */
+    const cliente = new Client();
+    cliente.name = req.body.rented_by;
+    await cliente.save();
+    console.log(`Client properties: ${cliente}`)
+
+    const ctdor = new Container(req.body);
+    ctdor.rented_by_id = cliente._id;
+    await ctdor.save();
+
     res.redirect('/containers');
 });
 

@@ -11,22 +11,22 @@
                     <div class="card-body">
                         <form action="/containers/edit/<%= container._id %>" method="POST">
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Container: </span>
+                                <span class="input-group-text">Container </span>
                                 <input type="text" readonly value='<%= container.id_container %>' class="form-control"
                                     placeholder="00" name="id_container">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Cliente: </span>
+                                <span class="input-group-text">Cliente </span>
                                 <input type="text" value='<%= container.rented_by %>' class="form-control"
                                     placeholder="Apellido, Nombre" name="rented_by">
+                                    <a href="/containers/unlink/<%= container._id %>" class="btn btn-outline-info" >Desvincular</a>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Valor Mensual $</span>
-                                <input type="text" value='<%= container.price_tocharge %>' class="form-control"
-                                    placeholder="5000" name="price_tocharge">
+                                <input type="number" step="1" value='<%= container.price_tocharge %>' class="form-control"
+                                    placeholder="0.00" name="price_tocharge">
                             </div>
-                            <button class="btn btn-block btn-success" type="submit" id="button-addon2">UPDATE</button>
-
+                            <button class="btn btn-block btn-success" type="submit" id="btn-update">Actualizar Importe</button>
                         </form>
                     </div>
                 </div>

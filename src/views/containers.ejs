@@ -14,8 +14,7 @@
                                 <select class="form-select" aria-label="Default" name="id_container">
                                     <option selected>Elegir Contenedor</option>
                                     <% for(var i=1; i< 28; i++) {%>
-                                        <option value="<%= i %>">Ct. <%= i %>
-                                        </option>
+                                        <option value="<%= i %>">Ct. <%= i %></option>
                                         <% } %>
                                 </select>
                             </div>
@@ -25,10 +24,9 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Importe $</span>
-                                <input type="number" class="form-control" placeholder="0.00" step="1"
-                                    name="price_tocharge">
+                                <input type="number" class="form-control" placeholder="0.00" step="1" name="price_tocharge">
                             </div>
-                            <button class="btn btn-block btn-primary" type="submit" id="button-addon2">ACEPTAR</button>
+                            <button class="btn btn-block btn-primary" type="submit" id="btn-addctdor">ACEPTAR</button>
 
                         </form>
                     </div>
