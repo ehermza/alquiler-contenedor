@@ -1,7 +1,7 @@
 const { model, Schema } = require('mongoose');
 
 const ContainerSchema = new Schema({
-    id_container: { type: Number, required: true },
+    id_container: { type: Number, unique: true, required: true, },
     price_tocharge: { type: Number, required: true },
     rented_by: { type: String, required: true },
     rented_by_id: String,

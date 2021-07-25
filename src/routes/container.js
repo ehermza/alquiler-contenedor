@@ -86,16 +86,23 @@ function validar_price(req) {
     return false;
 }
 
-async function isCtdorWithClient(req) {
+/* // VER / CORREGIR / REVISAR !!
+rented_by NO GET THE CORRECT VALUE
+ */
+async function isCtdorBussy(req) {
     const { id_container } = req.body;
-    const ctdor = await Container.findById(id_container);
-    return (ctdor.rented_by != '');
+
+    const ctdor = await Container.find({ 'id_container': id_container });
+    console.log(`Rented by: ${ctdor.rented_by}`);
+    let tl = ctdor.rented_by;
+    return (tl != '' && tl != undefined);
 }
 
 router.post('/containers/add/', async (req, res) => {
+/* User Quiere 'agregar' Container nuevo a la base datos
+            ehermza@github.com */
     var habilitar = true;
-
-    console.log("Adding a new client to database...");
+    console.log("Adding a new ctdor to database...");
     // console.log(req.body);
 
     habilitar = validar_id(req);
@@ -105,7 +112,8 @@ router.post('/containers/add/', async (req, res) => {
         res.redirect('/containers/t/430');
         return;
     }
-    if (isCtdorWithClient(req)) {
+    if (await isCtdorBussy(req)) {
+    // When the client try to add a container, will try to verify if the container exists 
         res.redirect('/containers/t/259');
         return;
     }
@@ -116,9 +124,17 @@ router.post('/containers/add/', async (req, res) => {
     await cliente.save();
     console.log(`Client properties: ${cliente}`)
 
-    const ctdor = new Container(req.body);
-    ctdor.rented_by_id = cliente._id;
-    await ctdor.save();
+    // const ctdor = new Container(req.body);   //deprecated!
+    // await ctdor.save();
+    // ctdor.rented_by_id = cliente._id;
+    const filter = {id_container: req.body.id_container};
+    const update = {
+        price_tocharge: req.body.price_tocharge,
+        rented_by: req.body.rented_by,
+        rented_by_id: cliente._id,
+        active: true,
+    }
+    const ctdor = await Container.findOneAndUpdate(filter, update);
 
     res.redirect('/containers');
 });
