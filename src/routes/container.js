@@ -89,13 +89,18 @@ function validar_price(req) {
 /* // VER / CORREGIR / REVISAR !!
 rented_by NO GET THE CORRECT VALUE
  */
-async function isCtdorBussy(req) {
-    const { id_container } = req.body;
-
-    const ctdor = await Container.find({ 'id_container': id_container });
-    console.log(`Rented by: ${ctdor.rented_by}`);
-    let tl = ctdor.rented_by;
-    return (tl != '' && tl != undefined);
+async function isCtdorBussy(idctdor) {
+    // const { id_container } = req.body;
+    console.log(`isCtdorBussy()  idctdor: #${idctdor}`);
+    const intCtdor = parseInt(idctdor); 
+    const filter = { 'id_container': intCtdor };
+    const ctdores = await Container.find(filter);
+    const bool = ctdores.map(ctdor => ctdor.active);
+    console.log(`OBJ. CONTENEDOR FROM MONGO: ${ctdores}`);
+    console.log(`is Container Active: ${bool}`);
+    return bool[0];
+    // let tl = ctdor.rented_by;
+    // return (tl != '' && tl != undefined);
 }
 
 router.post('/containers/add/', async (req, res) => {
@@ -112,7 +117,8 @@ router.post('/containers/add/', async (req, res) => {
         res.redirect('/containers/t/430');
         return;
     }
-    if (await isCtdorBussy(req)) {
+    const { id_container } = req.body;
+    if (await isCtdorBussy(id_container)) {
     // When the client try to add a container, will try to verify if the container exists 
         res.redirect('/containers/t/259');
         return;
@@ -127,7 +133,7 @@ router.post('/containers/add/', async (req, res) => {
     // const ctdor = new Container(req.body);   //deprecated!
     // await ctdor.save();
     // ctdor.rented_by_id = cliente._id;
-    const filter = {id_container: req.body.id_container};
+    const filter = {id_container: id_container};
     const update = {
         price_tocharge: req.body.price_tocharge,
         rented_by: req.body.rented_by,

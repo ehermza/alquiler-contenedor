@@ -1,7 +1,10 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
 
-[]	Mongoose /model/Container.js
+[]  Corregir: 
+        When USER try to add a new Container, the get function first must verify that container is not Active. 
+
+[X]	Mongoose /model/Container.js
     property 'id_container' may be unique: true 
     When the client try to add a container, first the function post.'/containers/add' will try to find the id_container 
      if 'id_container= getid' not exists 
