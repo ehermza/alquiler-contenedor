@@ -4,6 +4,9 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Agregar nuevo cliente</h3>
+                    </div>
                     <div class="card-body">
                         <form action="/containers/add" method="POST">
                             <!-- <div class="input-group mb-3">
@@ -14,7 +17,8 @@
                                 <select class="form-select" aria-label="Default" name="id_container">
                                     <option selected>Elegir Contenedor</option>
                                     <% for(var i=1; i< 28; i++) {%>
-                                        <option value="<%= i %>">Ct. <%= i %></option>
+                                        <option value="<%= i %>">Ct. <%= i %>
+                                        </option>
                                         <% } %>
                                 </select>
                             </div>
@@ -24,7 +28,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Importe $</span>
-                                <input type="number" class="form-control" placeholder="0.00" step="1" name="price_tocharge">
+                                <input type="number" class="form-control" placeholder="0.00" step="1"
+                                    name="price_tocharge">
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="btn-addctdor">ACEPTAR</button>
 
@@ -32,11 +37,11 @@
                     </div>
                 </div>
                 <!-- ALERT MESSAGE TO TRY DELETE  -->
-                <% if(alert!='') { %>
-                <div class="alert alert-dismissible alert-danger">
-                    <%= alert %>
-                </div>
-                <% } %>
+                <% if(alert!='' ) { %>
+                    <div class="alert alert-dismissible alert-danger">
+                        <%= alert %>
+                    </div>
+                    <% } %>
 
             </div>
 
