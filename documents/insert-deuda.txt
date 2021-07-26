@@ -1,0 +1,17 @@
+async function 
+
+containers.forEach(function(ctdor)) 
+{
+	if ( !ctdor.active ) 
+		continue;
+	const importe = -1 * ctdor.price_tocharge;
+	const idclient = ctdor.rented_by_id;
+	const values = ({
+		client: idclient,
+		value : importe,
+		mont_paid: 'Dto. mensual automat. Llenar',		
+	})
+	const pago = new Pago(values);
+	await pago.save();
+}
+

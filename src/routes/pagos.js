@@ -4,6 +4,7 @@ const Ctdor = require("../models/Container");
 
 const router = Router();
 
+
 router.get('/', async (req, res) => {
     // Show all the payments of all clients.
     const pagos = await Pago.find();

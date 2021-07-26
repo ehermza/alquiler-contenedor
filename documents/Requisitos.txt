@@ -1,43 +1,43 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
 
-[]  Corregir: 
+[]  Create a profile web for the inactives Clients. 
+
+[X]  Corregir: 
         When USER try to add a new Container, the get function first must verify that container is not Active. 
 
 [X]	Mongoose /model/Container.js
     property 'id_container' may be unique: true 
     When the client try to add a container, first the function post.'/containers/add' will try to find the id_container 
-     if 'id_container= getid' not exists 
+     if 'id_container= getid' not exists {
         then add to database, 
         else return false; 
     }
-[]  /
-views/profile.ejs   
+
+[]  /views/profile.ejs   
     Url GET: /containers/edit/:_id
     Two forms will be displayed on this page: *Container and *Client
-        Container inputs: Container(id_ctdor), Cliente(rented_by) readonly, Importe(value),
-        Buttons:    Set Changes, 
-                    Dar Baja: Set to property 'active: false' from table Client - Update Container table that contains this client.
-                    New Client: Client(req.body).save() to mongoose,
-        Client inputs: Cliente(_id), Nombre(name), Celular(Telephone), CUIT(DNI), Empresa(business),
-        Url POST: /clients/edit/:_id
+        CONTAINER inputs: Container(id_ctdor), Cliente(rented_by) readonly, Importe(value),
+        Buttons:    [X] Set Changes, 
+                    []  Desvincular: Set to property 'active: false' from table Client - Update Container table that contains this client.
+        CLIENT inputs: Cliente(_id), Nombre(name), Telefono(Telephone), CUIT(DNI), Razon social(business),
+        post Action: /clients/edit/:_id
 
-[]  /views/index.ejs
-    Create a new container "Clients" with a select object for to view the last pays of that client.
-     to press button 'Ver Pagos': when user select a Client, the server get all data pays from client since database and will write them to the table
-     on page /views/index.ejs
+[]  /views/.ejs
+    Create a new section "Clients" with a select object for to view the last pays of that client.
+     to press button 'Ver Pagos': the server get all data pays from one client since database and will write them to the table
+     on page /views/pagos/:id
 
 []  /views/index.ejs
     Pays Table Columns: 
-    #(id_container), Cliente(rented_by), Importe(value), Fecha(paid_at), Recibo(recibo_n), 
-       Action(Delete,)
+    #(id_container), Cliente(rented_by), Importe(value), Fecha(paid_at), Recibo(recibo_n), Action(Delete,)
 
 []  /views/index.ejs
-    Actions Column: Add an advert when press Delete Button to confirm the operation.
+    Actions Column: Add an advert when USER press Delete Button to confirm the operation.
 
 []  /views/containers.ejs
-    Add a response message when the success action is executed. ::Green
-[X]    Add a response message when the user action is failure. ::Red
+    []  Add a response message when the success action is executed. ::Green
+    [X] Add a response message when the user action is failure. ::Red
 
 
 [X]  /views/index.ejs
@@ -47,12 +47,9 @@ views/profile.ejs
     input "Valor mensual" (value): Forbit the caracters not numerics, Aggregate an Advert!
     
 []   Change profile.ejs to /views/ctdor-profile.ejs  >> /routes/containers/edit/#
-    input Client property: set readonly Add an Edit Button FOR Change Client
+    input Client property: set readonly Add an Edit Button FOR Change Client (NOT REQUIRED)
         Goto the New Page: /views/client-profile.ejs
     
 [X]  CLIENT: Desing and create the profile Client model (/model/Client.js)
-[]        and the web page, to write all person data. (/views/client.ejs)
-        Properties: 
-            idClient (_id-mongo), NAME, Telephone, DNI, business,
 
 

@@ -6,7 +6,8 @@ const dateFormat  = require('dateformat')
 
 const IndexPagos = require("./routes/pagos");
 const IndexCtdor = require("./routes/container");
-const IndexClient = require("./routes/client")
+const IndexClient = require("./routes/client");
+const IndexDeuda = require('./routes/deuda');
 const app = express();
 
 
@@ -31,7 +32,7 @@ app.use((req, res, next) => {
 app.use('/', IndexPagos);
 app.use('/', IndexCtdor);
 app.use('/', IndexClient);
-
+app.use('/', IndexDeuda);
 // local variables
 require('./database');
 app.use(express.static(__dirname + '/public'));
