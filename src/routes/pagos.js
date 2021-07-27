@@ -4,6 +4,21 @@ const Ctdor = require("../models/Container");
 
 const router = Router();
 
+async function getTotal(id_ctdor, id_client) {
+    const filter = { 
+        'client': id_client,
+        'id_container' : id_ctdor
+    };
+    const pagos_client = await Pago.find(filter);
+    
+    let total = 0;
+    // console.log(filter);
+    pagos_client.forEach(function (pago) {
+        total += parseInt(pago.value);
+
+    });
+    console.log(`PAGOS, Total Container: ${id_ctdor}: ${total}`);
+}
 
 router.get('/', async (req, res) => {
     // Show all the payments of all clients.
@@ -16,8 +31,23 @@ router.get('/', async (req, res) => {
 router.post('/pagos/add', async (req, res) => {
     console.log("Adding payment to database...");
 
-    const pago = new Pago(req.body);
+    const { objclient, value, ticket } = req.body;
+    const obj = objclient.split(',');
+    const id_ctdor = obj[0];
+    const id_client = obj[1];
+
+    // const pago = new Pago(req.body);
+    const properties = {
+        client: id_client,
+        value: value,
+        month_paid: '...',
+        paid_at: new Date(),
+        recibo_n: ticket,
+        id_container: id_ctdor,
+    }
+    const pago = new Pago(properties);
     await pago.save();
+    getTotal(id_ctdor, id_client);
 
     res.redirect('/');
 });

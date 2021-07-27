@@ -16,7 +16,7 @@
                             <div class="input-group mb-3">
                                 <select class="form-select" aria-label="Default" name="id_container">
                                     <option selected>Elegir Contenedor</option>
-                                    <% for(var i=1; i< 28; i++) {%>
+                                    <% for(var i=1; i<= 19; i++) {%>
                                         <option value="<%= i %>">Ct. <%= i %>
                                         </option>
                                         <% } %>
@@ -59,12 +59,8 @@
                     <tbody>
                         <% containers.forEach(function (ct) { %>
                             <tr>
-                                <td>
-                                    <%= ct.id_container %>
-                                </td>
-                                <td>
-                                    <%= ct.rented_by %>
-                                </td>
+                                <td><%= ct.id_container %></td>
+                                <td><%= ct.rented_by %></td>
                                 <td align="right">$ <%= ct.price_tocharge %>,00</td>
                                 <td>
                                     <a href="/containers/delete/<%= ct._id %>" class="btn btn-outline-danger">Delete</a>

@@ -1,6 +1,16 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
 
+[]  post. /pagos/add/
+    Get from database all pays of one client and registrate to model 'pago'
+
+[]  get. /deuda/charge
+    Get from database all debts of one client and registrate to model 'deuda'
+
+[]  views/containers.ejs
+    When the user try to register a new client, is necessary input the init date
+    Cdo el usuario quiera ingresar nuevo cliente, es necesario agregar un input date en el form containers.ejs para registrar fecha que comenzó el alquiler. 
+
 []  Create a profile web for the inactives Clients. 
 
 [X]  Corregir: 

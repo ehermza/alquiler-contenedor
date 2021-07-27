@@ -37,6 +37,9 @@ app.use('/', IndexDeuda);
 require('./database');
 app.use(express.static(__dirname + '/public'));
 
+app.locals.mostrar = function (ctdor, client) {
+    return `${ctdor},${client}`;
+};
 // Starting...
 app.listen(app.get('port'), () => {
     console.log(`Server on port: ${app.get('port')}`);

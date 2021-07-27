@@ -11,11 +11,12 @@
                     <div class="card-body">
                         <form action="/pagos/add" method="POST">
                             <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Selecciona Contenedor" name="client">
+                                <select class="form-select" aria-label="Selecciona Contenedor" name="objclient">
                                     <option selected>Seleccionar Cliente</option>
                                     <% containers.forEach(function(ctdor) { %>
-                                    <option value=<%= ctdor.id_container %>> 
-                                        <%= (ctdor.id_container < 10)? '0'+ ctdor.id_container: ctdor.id_container %>
+                                    <option value=<%= mostrar(ctdor.id_container, ctdor.rented_by_id); %>> 
+                                       <!-- <%= mostrar(ctdor.id_container, ctdor.rented_by_id); %> -->
+                                             <%= (ctdor.id_container < 10)? '0'+ ctdor.id_container: ctdor.id_container %>
                                         . <%= ctdor.rented_by %>                                         
                                     </option>
                                         <% }); %>
@@ -27,7 +28,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"> Recibo N°</span>
-                                <input type="text" class="form-control" placeholder="000000" name="recibo_n">
+                                <input type="text" class="form-control" placeholder="000000" name="ticket">
                             </div>
                             <button class="btn btn-block btn-outline-primary" type="submit"
                                 id="btn-addpay">ACEPTAR</button>
@@ -53,7 +54,7 @@
                         <% pagos.forEach(function (py) { %>
                             <tr>
                                 <td><%= py.client %></td>
-                                <td><%= py.value %></td>
+                                <td align="right">$<%= py.value %></td>
                                 <td><%= dateFormat(py.paid_at, "mmmm dd, yyyy") %></td>
                                 <td>0<%= py.recibo_n %></td>
                                 <td>

@@ -7,7 +7,8 @@ const ClientSchema = new Schema({
     DNI: String,
     business: String,
     active: { type: Boolean, default: true },
-    saldo_act: { type: Number, default: 0 },
+    deuda_total: { type: Number, default: 0 },
+    pagos_total: { type: Number, default: 0 },
 });
 
 module.exports = model('client', ClientSchema);
