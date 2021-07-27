@@ -140,7 +140,7 @@ router.post('/containers/add/', async (req, res) => {
     res.redirect('/containers');
 });
 
-router.get('/containers/delete/:getid', async (req, res, next) => {
+/* router.get('/containers/delete/:getid', async (req, res, next) => {
     // Deleted the selected Container by user. 
     const { getid } = req.params;
     const ctdor = await Container.findByIdAndDelete(getid);
@@ -148,5 +148,5 @@ router.get('/containers/delete/:getid', async (req, res, next) => {
 
     res.redirect('/containers');
 });
-
+ */
 module.exports = router;

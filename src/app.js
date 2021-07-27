@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require('path');
 const morgan = require('morgan');
-const dateFormat  = require('dateformat')
+const dateFormat = require('dateformat')
 // const { format } = require('timeago.js')
 
 const IndexPagos = require("./routes/pagos");
@@ -40,6 +40,9 @@ app.use(express.static(__dirname + '/public'));
 app.locals.mostrar = function (ctdor, client) {
     return `${ctdor},${client}`;
 };
+app.locals.getSaldo = function (deuda, pagos) {
+    return parseInt(deuda - pagos);
+}
 // Starting...
 app.listen(app.get('port'), () => {
     console.log(`Server on port: ${app.get('port')}`);

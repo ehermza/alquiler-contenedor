@@ -1,16 +1,17 @@
 const { Router } = require("express");
-const Pago = require("../models/Pago");
-const Ctdor = require("../models/Container");
-
 const router = Router();
 
+const Pago = require("../models/Pago");
+const Ctdor = require("../models/Container");
+const Client = require("../models/Client");
+
 async function getTotal(id_ctdor, id_client) {
-    const filter = { 
+    const filter = {
         'client': id_client,
-        'id_container' : id_ctdor
+        'id_container': id_ctdor
     };
     const pagos_client = await Pago.find(filter);
-    
+
     let total = 0;
     // console.log(filter);
     pagos_client.forEach(function (pago) {
@@ -18,6 +19,7 @@ async function getTotal(id_ctdor, id_client) {
 
     });
     console.log(`PAGOS, Total Container: ${id_ctdor}: ${total}`);
+    return total;
 }
 
 router.get('/', async (req, res) => {
@@ -47,7 +49,10 @@ router.post('/pagos/add', async (req, res) => {
     }
     const pago = new Pago(properties);
     await pago.save();
-    getTotal(id_ctdor, id_client);
+
+    const totalpagos = await getTotal(id_ctdor, id_client);
+     const dato = { 'pagos_total': totalpagos };
+    await Client.findByIdAndUpdate(id_client, dato);
 
     res.redirect('/');
 });
