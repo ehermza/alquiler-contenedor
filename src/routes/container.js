@@ -40,7 +40,7 @@ router.get('/containers/t/:id', async function (req, res) {
     res.render('containers', { containers: containers, alert: alert });
 });
 
-router.get('/containers/edit/:getid', async (req, res) => {
+router.get('/containers/edit/:getid', async function (req, res) {    
     // Get One Container to edit properties...
     const { getid } = req.params;
     const container = await Container.findById(getid);

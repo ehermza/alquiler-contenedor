@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     res.render('index', { pagos: pagos, containers: ctdor });
 });
 
-router.post('/pagos/add', async (req, res) => {
+router.post('/pagos/add', async function (req, res) {
     console.log("Adding payment to database...");
 
     const { objclient, value, ticket } = req.body;

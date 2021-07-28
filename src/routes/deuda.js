@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Deuda = require("../models/Deuda");
 const Ctdor = require("../models/Container");
+const Client = require("../models/Client");
 
 const router = Router();
 
@@ -14,6 +15,7 @@ async function getTotal(ctdor) {
 
     });
     console.log(`Deudas de ${ctdor.rented_by}: ${total}`);
+    return total;
 }
 
 async function ChargeDeuda(ctdor) {
@@ -27,17 +29,32 @@ async function ChargeDeuda(ctdor) {
     await deuda.save();
 }
 
+async function getIdClient(idctdor)
+{
+    const filter = {'id_container': idctdor};
+    const arrayctdores=  await Ctdor.findOne(filter);
+    
+    return arrayctdores.rented_by_id;
+}
+
 router.get('/deuda/charge', async function (req, res) {
-    for (var idctdor = 1; idctdor <= 19; idctdor++) {
+    for (var idctdor = 1; idctdor <= 19; idctdor++) 
+    {
         const filter = { 'id_container': idctdor };
         const ctdores = await Ctdor.find(filter);
         if (!ctdores.length)
             continue;
         const container = ctdores[0];
-        if (container.active) {
-            ChargeDeuda(container);
-            getTotal(container);
-        }
+
+        if (!container.active)  
+            continue;
+        await ChargeDeuda(container);
+        const totaldeudas = await getTotal(container);
+        let idclient= await getIdClient(idctdor);
+        console.log(`I want to charge deuda to: ${idclient}`);
+        //
+        const setvalue = {'deuda_total': totaldeudas};
+        await Client.findByIdAndUpdate(idclient, setvalue);
     }
     res.redirect('/');
 });
