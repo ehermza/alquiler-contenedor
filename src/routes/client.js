@@ -5,6 +5,13 @@ const Client = require("../models/Client");
 //const Pago = require("../models/Pago");
 
 const router = Router();
+
+router.get('/clients', async function (req, res) {
+    const clients = await Client.find();
+    const arraycl = clients.map(objclient => objclient.name);
+    console.log(`Clients Array: ${arraycl} `);
+    res.render('clients', { 'clients': arraycl })
+});
 /*
     router.get('/clients/edit/:idclient', async (req, res) => {
     // Show data person of one client.
@@ -13,8 +20,7 @@ const router = Router();
     res.render('profile', { container: container });
 });
  */
-router.post('/clients/edit/:idclient', async function (req, res) 
-{
+router.post('/clients/edit/:idclient', async function (req, res) {
     const { idclient } = req.params;
     // console.log(`Cliente: ${req.body}`)
 

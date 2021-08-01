@@ -1,0 +1,24 @@
+<%- include('partials/header'); -%>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/clients" method="POST">
+                        <div class="input-group">
+                            <select name="client" class="form-select" aria-label="Default">
+                                <option selected>Elegir Cliente</option>
+                            </select>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+
+        </div>
+    </div>
+</div>
+<%- include('partials/footer'); -%>

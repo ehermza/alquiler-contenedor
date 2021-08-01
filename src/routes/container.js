@@ -11,7 +11,8 @@ const router = Router();
 
 
 /**
- *  Print a list of containers printing client name & price per month. Also has a FORM for agregate a new client, 
+ *  Print a list of containers (client name & price per month). 
+ *   Also has a FORM for agregate a new client, 
  * @name containers
  * @api {GET}  /containers
  */
@@ -22,8 +23,8 @@ router.get('/containers', async (req, res) => {
 });
 
 /**
- *  Unlink a Client to Id-Container, this happens when the client left behind the rent.
- *  @name containers/unlink
+ *  Action: Unlink a Client from Container selected. \nThis happens when the client left behind the rent.
+ *  @name Unlink client selected
  * @api {GET} /containers/unlink/:idcontainer
  */
 router.get('/containers/unlink/:idcont', async function (req, res) {
@@ -74,9 +75,14 @@ router.get('/containers/edit/:getid', async function (req, res) {
 });
 
 /**
- * Send data to Server to Update personal info from client
- * @name Client Profile
+ * Action: Update client profile selected.
+ * @name Update Client
  * @api {POST} /containers/edit/:id
+ * @bodyparam {string} name Nombre
+ * @bodyparam {string} telephone Telefono
+ * @bodyparam {string} bussiness Razon Social
+ * @bodyparam {Number} saldo_act Saldo Actual
+ * 
  */
 router.post('/containers/edit/:getid', async (req, res) => {
     // update the container to database.
@@ -110,15 +116,11 @@ function validar_price(req) {
     return false;
 }
 /**
- * 
+ *   try to verify if the select container has client or not
  * @param {string} idctdor Id_Container
  * @returns boolean
  */
 async function isCtdorBussy(idctdor) {
-/**
- *   try to verify if the select container has client or not
- *   ehermza@github.com 
- */
     const filter = { 'id_container': parseInt(idctdor) };
     const ctdores = await Container.find(filter);
     const bool = ctdores.map(ctdor => ctdor.active);
@@ -127,8 +129,8 @@ async function isCtdorBussy(idctdor) {
     return bool[0];
 }
 /**
- *  User try to add a new Container to database
- * @name Add Client
+ *  User try to add a new Client to database and to link to selected Container
+ * @name Add new Client
  * @api {POST} /containers/add
  * @bodyparam {String} id_container Id Container
  * @bodyparam {String} rented_by    Container's client Name
@@ -148,7 +150,7 @@ router.post('/containers/add/', async (req, res) => {
     }
     const { id_container } = req.body;
     if (await isCtdorBussy(id_container)) {
-        // When the client try to add a container, will try to verify if the container exists 
+    // When the client try to add a container, will try to verify if the container exists 
         res.redirect('/containers/t/259');
         return;
     }
