@@ -9,6 +9,9 @@
                         <div class="input-group">
                             <select name="client" class="form-select" aria-label="Default">
                                 <option selected>Elegir Cliente</option>
+                                <% for(var i=0; i< clients.length; i++) { %>
+                                    <option value=<%= clients[i] %>> <%= clients[i] %>
+                                        <% } %>
                             </select>
                             
                         </div>
