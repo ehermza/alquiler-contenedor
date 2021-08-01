@@ -2,3 +2,4 @@ node_modules/
 .trash/
 .git-oldversion/
 *.tar
+doc/

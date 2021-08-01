@@ -1,0 +1,21 @@
+{
+    "plugins": ["jsdoc-api-plugin"],
+    "source": {
+        "include": ["src"],
+        "includePattern": ".js$",
+        "excludePattern": "(.ejs$|node_modules|documents|docs)"
+    },
+    "opts": {
+        "destination": "./doc",
+        "recurse": true
+    },
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}
+

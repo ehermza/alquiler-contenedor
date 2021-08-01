@@ -1,10 +1,10 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
 
-[]  post. /pagos/add/
+[X]  post. /pagos/add/
     Get from database all pays of one client and registrate to model 'pago'
 
-[]  get. /deuda/charge
+[X]  get. /deuda/charge
     Get from database all debts of one client and registrate to model 'deuda'
 
 []  views/containers.ejs
@@ -58,7 +58,6 @@ ALQUILER CONTENEDORES REQUERIMIENTOS
     
 []   Change profile.ejs to /views/ctdor-profile.ejs  >> /routes/containers/edit/#
     input Client property: set readonly Add an Edit Button FOR Change Client (NOT REQUIRED)
-        Goto the New Page: /views/client-profile.ejs
     
 [X]  CLIENT: Desing and create the profile Client model (/model/Client.js)
 

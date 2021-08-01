@@ -1,16 +1,18 @@
+//@ts-check
+
 const { Router } = require("express");
 const Client = require("../models/Client");
 //const Pago = require("../models/Pago");
 
 const router = Router();
-
-router.get('/clients/edit/:idclient', async (req, res) => {
+/*
+    router.get('/clients/edit/:idclient', async (req, res) => {
     // Show data person of one client.
     const { idclient } = req.params;
     const cliente = await Client.find({ _id: idclient });
     res.render('profile', { container: container });
 });
-
+ */
 router.post('/clients/edit/:idclient', async function (req, res) 
 {
     const { idclient } = req.params;

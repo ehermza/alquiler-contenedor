@@ -1,9 +1,13 @@
-const { Schema, model } = require('mongoose');
+//@ts-check
 
+const { Schema, model } = require('mongoose');
+/**
+ * Datos del cliente que alquila al menos un container.
+ * @type {Schema}
+ */
 const ClientSchema = new Schema({
-    // id_Client: { type: String, requiered: true },
     name: { type: String, required: true },
-    telephone: { type: String, default: 'Ingresar' },
+    telephone: String,
     DNI: String,
     business: String,
     active: { type: Boolean, default: true },

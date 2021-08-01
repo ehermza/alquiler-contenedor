@@ -24,7 +24,8 @@ async function getTotal(id_ctdor, id_client) {
 
 router.get('/', async (req, res) => {
     // Show all the payments of all clients.
-    const pagos = await Pago.find();
+    const orderby = { paid_at: -1 };
+    const pagos = await Pago.find().sort(orderby);
     const ctdor = await Ctdor.find();
 
     res.render('index', { pagos: pagos, containers: ctdor });
@@ -51,7 +52,7 @@ router.post('/pagos/add', async function (req, res) {
     await pago.save();
 
     const totalpagos = await getTotal(id_ctdor, id_client);
-     const dato = { 'pagos_total': totalpagos };
+    const dato = { 'pagos_total': totalpagos };
     await Client.findByIdAndUpdate(id_client, dato);
 
     res.redirect('/');

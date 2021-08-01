@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const deudaSchema = new Schema({
-    client: { type: String, default: '@Nombre' },
+    client: { type: String, default: '_id: ObjectId(Client)' },
     id_container: Number,
     value: { type: Number, required: true },
     period: { type: String, default: '' },
