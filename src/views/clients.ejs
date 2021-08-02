@@ -1,0 +1,57 @@
+<%- include('partials/header'); -%>
+
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- <div class="card"> -->
+                <div class="card border-primary mb-3" style="max-width: 60rem;">
+                    <div class="card-header">
+                        VER PAGOS
+                    </div>
+                    <div class="card-body">
+                        <form action="/clients" method="POST">
+                            <div class="input-group">
+                                <select name="idclient" class="form-select" aria-label="Default">
+                                    <option selected>Elegir Cliente</option>
+                                    <% clients.forEach(function(objclient) { %>
+                                        <option value='<%= objclient._id %>'>
+                                            <%= objclient.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+
+                                <button class="btn btn-outline-success" type="submit">Mostrar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <h3><%= clientname %></h3>
+                    </div>
+                </div>
+            </div>
+            <% if (typeof pagos !=='undefined' ) { %>
+                <!-- TABLE CLIENT'S PAYMENTS  -->
+                <div class="col-md-7">
+                    <table class="table table-hover">
+                        <thead>
+                            <th>#</th>
+                            <th>Importe</th>
+                            <th>Fecha</th>
+                            <th>Rec.</th>
+                        </thead>
+                        <tbody>
+                            <% pagos.forEach(function(objpago) { %>
+                                <tr>
+                                    <td> <%= objpago.id_container %></td>
+                                    <td>$<%= objpago.value %></td>
+                                    <td> <%= dateFormat( objpago.paid_at, 'dd mmmm, yyyy') %></td>
+                                    <td> <%= objpago.recibo_n %></td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
+        </div>
+    </div>
+    <%- include('partials/footer'); -%>

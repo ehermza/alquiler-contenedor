@@ -1,6 +1,12 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
 
+[]  'CLIENTES' Section
+    FORM to select, which list all clients, including the clients not active. 
+        To select client, the server return the payments list (from the beginning) and the web must to print a table with detail payments.
+    
+    
+
 [X]  post. /pagos/add/
     Get from database all pays of one client and registrate to model 'pago'
 
