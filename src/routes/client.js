@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 //@ts-check
 
 const { Router } = require("express");
@@ -52,4 +50,3 @@ router.post('/clients/edit/:idclient', async function (req, res) {
 // });
 
 module.exports = router;
->>>>>>> br.clients
