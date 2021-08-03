@@ -1,0 +1,1 @@
+mongoimport --db alq-containers --collection clients --drop --file ./create-clients.json
