@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 // Globals variables
 app.use((req, res, next) => {
     app.locals.dateFormat = dateFormat;
+    app.locals.TOTAL_CONTAINERS= 28;
     next();
 });
 

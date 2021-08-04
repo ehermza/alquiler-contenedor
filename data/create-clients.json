@@ -1,0 +1,81 @@
+{
+    "name": "CASTRO ALEJANDRO",
+    "telephone": "",
+    "DNI": "",
+    "business": "AdBlue",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "DIEGO GALDEANO",
+    "telephone": "",
+    "DNI": "",
+    "business": "ARGEON",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "HERNANDEZ PEDRO",
+    "telephone": "",
+    "DNI": "",
+    "business": "TTES. HERNANDEZ HNOS SRL",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "ESCUDERO HUGO",
+    "telephone": "",
+    "DNI": "",
+    "business": "",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "RODRIGUEZ LUCAS",
+    "telephone": "",
+    "DNI": "",
+    "business": "SUSHI BAR",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "LOPEZ GUILLERMO",
+    "telephone": "",
+    "DNI": "",
+    "business": "",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "JULIAN ALBARRACIN",
+    "telephone": "",
+    "DNI": "",
+    "business": "840 Bar",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+{
+    "name": "JEANNETTE ALBARRACIN",
+    "telephone": "",
+    "DNI": "",
+    "business": "Escribania",    
+    "active": true,
+    "deuda_total": 0,
+    "pagos_total": 0,
+    "rent_info": []
+}
+
