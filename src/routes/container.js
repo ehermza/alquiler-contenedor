@@ -23,7 +23,7 @@ router.get('/containers', async (req, res) => {
 });
 
 /**
- *  Action: Unlink a Client from Container selected. \nThis happens when the client left behind the rent.
+ *  Action: Unlink a Client from Container selected. This happens when the client left behind the rent.
  *  @name Unlink client selected
  * @api {GET} /containers/unlink/:idcontainer
  */
@@ -46,7 +46,7 @@ router.get('/containers/t/:id', async function (req, res) {
     } else if (id.indexOf('310') != -1) {
         alert = "readonly";
     } else if (id.indexOf('259') != -1) {
-        alert = "El Ctdor elegido ya se encuentra alquilado.";
+        alert = "El Ct. elegido ya se encuentra alquilado. Primero intenta desvincular Cliente en 'Editar'";
     }
     console.log(`Alert: ${alert}`);
     
