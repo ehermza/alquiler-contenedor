@@ -26,9 +26,9 @@ router.get('/', async (req, res) => {
     // Show all the payments of all clients.
     const orderby = { paid_at: -1 };
     const pagos = await Pago.find().sort(orderby);
-    const ctdor = await Ctdor.find();
+    const ctdores = await Ctdor.find();
 
-    res.render('index', { pagos: pagos, containers: ctdor });
+    res.render('index', { pagos: pagos, containers: ctdores });
 });
 
 router.post('/pagos/add', async function (req, res) {

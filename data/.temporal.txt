@@ -1,0 +1,1 @@
+mongoimport --db alq-containers --collection containers --drop --file ./create-containers.json

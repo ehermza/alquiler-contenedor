@@ -3,15 +3,8 @@ ALQUILER CONTENEDORES REQUERIMIENTOS
 
 []  'CLIENTES' Section
     FORM to select, which list all clients, including the clients not active. 
-        To select client, the server return the payments list (from the beginning) and the web must to print a table with detail payments.
-    
-    
+        To select client, the server return the payments list (from the beginning) and the web must to print a table with detail payments.        
 
-[X]  post. /pagos/add/
-    Get from database all pays of one client and registrate to model 'pago'
-
-[X]  get. /deuda/charge
-    Get from database all debts of one client and registrate to model 'deuda'
 
 []  views/containers.ejs
     When the user try to register a new client, is necessary input the init date
@@ -19,16 +12,6 @@ ALQUILER CONTENEDORES REQUERIMIENTOS
 
 []  Create a profile web for the inactives Clients. 
 
-[X]  Corregir: 
-        When USER try to add a new Container, the get function first must verify that container is not Active. 
-
-[X]	Mongoose /model/Container.js
-    property 'id_container' may be unique: true 
-    When the client try to add a container, first the function post.'/containers/add' will try to find the id_container 
-     if 'id_container= getid' not exists {
-        then add to database, 
-        else return false; 
-    }
 
 []  /views/profile.ejs   
     Url GET: /containers/edit/:_id
@@ -55,16 +38,35 @@ ALQUILER CONTENEDORES REQUERIMIENTOS
     []  Add a response message when the success action is executed. ::Green
     [X] Add a response message when the user action is failure. ::Red
 
+    
+[]   Change profile.ejs to /views/ctdor-profile.ejs  >> /routes/containers/edit/#
+    input Client property: set readonly Add an Edit Button FOR Change Client (NOT REQUIRED)
+
+[X]  GET ./containers/
+    On container's table, list all containers order by id_container number.
+    
+[X]  CLIENT: Desing and create the profile Client model (/model/Client.js)
+
+[X]  post. /pagos/add/
+    Get from database all pays of one client and registrate to model 'pago'
+
+[X]  get. /deuda/charge
+    Get from database all debts of one client and registrate to model 'deuda'
+
+[X]  POST /containers/add -URGENT TO CORRECT: 
+        When USER try to add a new Container, the get function first must verify that container is not Active. 
+
+[X]	Mongoose /model/Container.js
+    property 'id_container' may be unique: true 
+    When the client try to add a container, first the function post.'/containers/add' will try to find the id_container 
+     if 'id_container= getid' not exists {
+        then add to database, 
+        else return false; 
+    }
 
 [X]  /views/index.ejs
     'Fecha' Column: Change the current format to something like "dd/mm/yyyy"
 
 [x]   /views/containers.ejs  
     input "Valor mensual" (value): Forbit the caracters not numerics, Aggregate an Advert!
-    
-[]   Change profile.ejs to /views/ctdor-profile.ejs  >> /routes/containers/edit/#
-    input Client property: set readonly Add an Edit Button FOR Change Client (NOT REQUIRED)
-    
-[X]  CLIENT: Desing and create the profile Client model (/model/Client.js)
-
 

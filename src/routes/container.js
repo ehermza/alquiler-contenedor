@@ -18,7 +18,7 @@ const router = Router();
  */
 router.get('/containers', async (req, res) => {
     // List all containers from database...
-    const containers = await Container.find({ rented_by: { $ne: '' } });
+    const containers = await Container.find({ rented_by: { $ne: '' }}).sort({id_container:-1});
     res.render('containers', { containers: containers, alert: '' });
 });
 
