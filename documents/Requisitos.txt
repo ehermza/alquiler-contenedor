@@ -1,5 +1,7 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
+[]  URGENT, TO CORRECT:
+      'NUEVO PERIODO' Button is not working..?
 
 []  'CLIENTES' Section
     FORM to select, which list all clients, including the clients not active. 

@@ -1,3 +1,5 @@
+/** @module Deuda */
+
 const { Router } = require("express");
 const Deuda = require("../models/Deuda");
 const Ctdor = require("../models/Container");
@@ -17,7 +19,10 @@ async function getTotal(ctdor) {
     console.log(`Deudas de ${ctdor.rented_by}: ${total}`);
     return total;
 }
-
+/**
+ * Insert to database the new debt by Id.Container
+ * @param {Ctdor} ctdor Container class
+ */
 async function ChargeDeuda(ctdor) {
     const values = {
         client: ctdor.rented_by_id,
@@ -36,9 +41,14 @@ async function getIdClient(idctdor)
     
     return arrayctdores.rented_by_id;
 }
-
-router.get('/deuda/charge', async function (req, res) {
-    for (var idctdor = 1; idctdor <= 19; idctdor++) 
+/**
+ * Charge new debt from All active Clients to database,
+ * @name Cargar 
+ * @api {GET} /deuda/charge
+ */
+router.get('/deuda/charge', async function (req, res) 
+{
+    for (var idctdor = 1; idctdor <= TOTAL_CONTAINERS; idctdor++) 
     {
         const filter = { 'id_container': idctdor };
         const ctdores = await Ctdor.find(filter);

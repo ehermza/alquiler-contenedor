@@ -1,5 +1,5 @@
 //@ts-check
-/** @module container */
+/** @module Container */
 
 const { Router } = require("express");
 const Container = require("../models/Container");
