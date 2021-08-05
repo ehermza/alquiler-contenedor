@@ -22,14 +22,8 @@ router.post('/clients', async function (req, res) {
     const objclient = await Client.findOne(filtro);
     const clientname = objclient.name;
     res.render('clients', { 'clients': clients, 'pagos': pagos, clientname });
-})
-/*
-    router.get('/clients/edit/:idclient', async (req, res) => {
-    // Show data person of one client.
-    const { idclient } = req.params;
-    const cliente = await Client.find({ _id: idclient });
-    res.render('profile', { container: container });
 });
+
 router.post('/clients/edit/:idclient', async function (req, res) {
     const { idclient } = req.params;
     // console.log(`Cliente: ${req.body}`)
@@ -38,6 +32,13 @@ router.post('/clients/edit/:idclient', async function (req, res) {
     
     console.log("Update the client to database...");
     res.redirect('/containers');
+});
+/*
+    router.get('/clients/edit/:idclient', async (req, res) => {
+    // Show data person of one client.
+    const { idclient } = req.params;
+    const cliente = await Client.find({ _id: idclient });
+    res.render('profile', { container: container });
 });
 */
 
