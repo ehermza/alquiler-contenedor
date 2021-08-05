@@ -37,9 +37,13 @@ app.use('/', IndexDeuda);
 // local variables
 require('./database');
 app.use(express.static(__dirname + '/public'));
-
-app.locals.mostrar = function (ctdor, client) {
-    return `${ctdor},${client}`;
+/**
+ * Function global that return client-data to /pagos/add in string format,
+ * @returns string
+ */
+app.locals.mostrar = function (ctdorid, clientid, cliname) {
+    console.log(cliname);
+    return `${ctdorid},${clientid},${cliname}`;
 };
 app.locals.getSaldo = function (deuda, pagos) {
     return parseInt(deuda - pagos);

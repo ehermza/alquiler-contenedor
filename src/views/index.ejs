@@ -14,9 +14,8 @@
                                 <select class="form-select" aria-label="Selecciona Contenedor" name="objclient">
                                     <option selected>Seleccionar Cliente</option>
                                     <% containers.forEach(function(ctdor) { %>
-                                    <option value=<%= mostrar(ctdor.id_container, ctdor.rented_by_id); %>> 
-                                       <!-- <%= mostrar(ctdor.id_container, ctdor.rented_by_id); %> -->
-                                             <%= (ctdor.id_container < 10)? '0'+ ctdor.id_container: ctdor.id_container %>
+                                    <option value=<%= mostrar(ctdor.id_container, ctdor.rented_by_id, ctdor.rented_by); %>>
+                                        <%= (ctdor.id_container < 10)? '0'+ ctdor.id_container: ctdor.id_container %>
                                         . <%= ctdor.rented_by %>                                         
                                     </option>
                                         <% }); %>
@@ -64,7 +63,7 @@
                     <tbody>
                         <% pagos.forEach(function (py) { %>
                             <tr>
-                                <td><%= py.client %></td>
+                                <td><%= py.client_name %></td>
                                 <td align="right">$<%= py.value %></td>
                                 <td><%= dateFormat(py.paid_at, "mmmm dd, yyyy") %></td>
                                 <td>0<%= py.recibo_n %></td>

@@ -38,10 +38,13 @@ router.post('/pagos/add', async function (req, res) {
     const obj = objclient.split(',');
     const id_ctdor = obj[0];
     const id_client = obj[1];
+    const nombre = obj[2];
+    console.log(`/pagos/add Request body: ${req.body.objclient}`);
 
     // const pago = new Pago(req.body);
     const properties = {
         client: id_client,
+        client_name: nombre,
         value: value,
         month_paid: '...',
         paid_at: new Date(),

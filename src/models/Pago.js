@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const pagoSchema = new Schema({
     client: { type: String, default: '_id: ObjectId(Client)' },
+    client_name: String,
     value: { type: Number, required: true },
     month_paid: { type: String, default: '' },
     paid_at: { type: Date, default: Date.now() },
