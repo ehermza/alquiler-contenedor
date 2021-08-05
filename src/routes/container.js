@@ -4,15 +4,11 @@
 const { Router } = require("express");
 const Container = require("../models/Container");
 const Client = require("../models/Client");
-
 // const Pago = require("../models/Pago");
 
 const router = Router();
-
-
 /**
- *  Print a list of containers (client name & price per month). 
- *   Also has a FORM for agregate a new client, 
+ *  Print to views/containers.ejs a list of containers (client name & price per month). 
  * @name containers
  * @api {GET}  /containers
  */
@@ -130,7 +126,7 @@ async function isCtdorBussy(idctdor) {
 }
 /**
  *  User try to add a new Client to database and to link to selected Container
- * @name Add new Client
+ * @name AddClient
  * @api {POST} /containers/add
  * @bodyparam {String} id_container Id Container
  * @bodyparam {String} rented_by    Container's client Name
@@ -150,20 +146,16 @@ router.post('/containers/add/', async (req, res) => {
     }
     const { id_container } = req.body;
     if (await isCtdorBussy(id_container)) {
-    // When the client try to add a container, will try to verify if the container exists 
+    /** When the client try to add a container, will try to verify if the container exists **/ 
         res.redirect('/containers/t/259');
         return;
     }
-    /* Creando Cliente nuevo para agregarlo a base datos
-            ehermza@github.com */
+    /** Create the new Client and insert it to Client table (mongodb) **/
     const cliente = new Client();
     cliente.name = req.body.rented_by;
     await cliente.save();
     console.log(`Client properties: ${cliente}`)
 
-    // const ctdor = new Container(req.body);   //deprecated!
-    // await ctdor.save();
-    // ctdor.rented_by_id = cliente._id;
     const filter = { id_container: id_container };
     const update = {
         price_tocharge: req.body.price_tocharge,

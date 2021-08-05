@@ -1,6 +1,10 @@
 
 ALQUILER CONTENEDORES REQUERIMIENTOS
-[]  URGENT, TO CORRECT:
+
+[]  To Correct:  /index.js
+    'Delete' button, is not updating current value: debt - pays in profile client.
+
+[X]  URGENT, TO CORRECT:
       'NUEVO PERIODO' Button is not working..?
 
 []  'CLIENTES' Section

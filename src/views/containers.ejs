@@ -16,9 +16,8 @@
                             <div class="input-group mb-3">
                                 <select class="form-select" aria-label="Default" name="id_container">
                                     <option selected>Elegir Contenedor</option>
-                                    <% for(var i=1; i<= TOTAL_CONTAINERS; i++) {%>
-                                        <option value="<%= i %>">Ct. <%= i %>
-                                        </option>
+                                    <% for(var i=1; i<= process.env.TOTAL_CONTAINERS; i++) {%>
+                                        <option value="<%= i %>">Ct. <%= i %></option>
                                         <% } %>
                                 </select>
                             </div>

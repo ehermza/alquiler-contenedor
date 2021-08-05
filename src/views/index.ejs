@@ -1,80 +1,99 @@
 <%- include('partials/header'); -%>
 
-    <div class="container p-4">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="card">
-                        <div class="card-header">
-                            <h3 class="text-center">Registro de Pagos</h3>
-                        </div>
-    
-                    <div class="card-body">
-                        <form action="/pagos/add" method="POST">
-                            <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Selecciona Contenedor" name="objclient">
-                                    <option selected>Seleccionar Cliente</option>
-                                    <% containers.forEach(function(ctdor) { %>
-                                    <option value=<%= mostrar(ctdor.id_container, ctdor.rented_by_id, ctdor.rented_by); %>>
-                                        <%= (ctdor.id_container < 10)? '0'+ ctdor.id_container: ctdor.id_container %>
-                                        . <%= ctdor.rented_by %>                                         
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card border-primary mb-3">
+                <div class="card-header">
+                    <h3 class="text-center">Registro de Pagos</h3>
+                </div>
+
+                <div class="card-body">
+                    <form action="/pagos/add" method="POST">
+                        <div class="input-group mb-3">
+                            <select class="form-select" aria-label="" name="objclient">
+                                <option selected>Seleccionar Cliente</option>
+                                <% containers.forEach(function(ctdor) { 
+                                    let strclient= getstring(ctdor.id_container, ctdor.rented_by) %>
+                                    <option value=<%= mostrar(ctdor.id_container, ctdor.rented_by_id, strclient); %>>
+                                        <%= strclient %>
                                     </option>
-                                        <% }); %>
+                                    <% }); %>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"> Importe</span>
+                            <input type="text" class="form-control" placeholder="0.00" name="value">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"> Recibo N°</span>
+                            <input type="text" class="form-control" placeholder="000000" name="ticket">
+                        </div>
+                        <button class="btn btn-block btn-primary" type="submit" id="btn-addpay">ACEPTAR</button>
+
+                    </form>
+                </div>
+            </div>
+            <div>
+                <div class="card border-warning">
+                    <div class="card-header">
+                        <h5 class="text-center text-warning">Registrar nuevo periodo</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/deuda/charge" method="GET">
+                            <div class="input-group mb-3">
+                                <select name="per" class="form-select" id="period">
+                                    <option selected>Elegir Periodo</option>
+                                    <% let array_meses=process.env.STR_MESES.split(','); 
+                                        for(var i=0; i< array_meses.length; i++) { %>
+                                        <option value="<%= array_meses[i] %>">
+                                            <%= array_meses[i] %>
+                                        </option>
+                                    <% } %>
                                 </select>
                             </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"> Importe</span>
-                                <input type="text" class="form-control" placeholder="0.00" name="value">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"> Recibo N°</span>
-                                <input type="text" class="form-control" placeholder="000000" name="ticket">
-                            </div>
-                            <button class="btn btn-block btn-outline-primary" type="submit"
-                                id="btn-addpay">ACEPTAR</button>
+                            <button class="btn btn-block btn-outline-warning" type="submit"
+                                id="btn-deudacharge">NUEVO PERIODO</button>
 
-                        </form>
                     </div>
+                    </form>
                 </div>
-                <div>
-                    <div class="card">
-                        <form action="/deuda/charge" method="GET">
-                            <div class="card-body">
-                                <button class="btn btn-block btn-outline-warning" type="submit"
-                                    id="btn-deudacharge">NUEVO PERIODO</button>
-    
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- DATABASE TABLE -->
-            <div class="col-md-7">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Importe</th>
-                            <th>Fecha</th>
-                            <th>Recibo</th>
-                            <th>Action</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% pagos.forEach(function (py) { %>
-                            <tr>
-                                <td><%= py.client_name %></td>
-                                <td align="right">$<%= py.value %></td>
-                                <td><%= dateFormat(py.paid_at, "mmmm dd, yyyy") %></td>
-                                <td>0<%= py.recibo_n %></td>
-                                <td>
-                                    <a href="/pagos/delete/<%= py._id %>" class="btn btn-outline-danger">Delete</a>
-                                </td>
-                            </tr>
-                            <% }); %>
-                    </tbody>
-                </table>
             </div>
         </div>
+        <!-- DATABASE TABLE -->
+        <div class="col-md-7">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Importe</th>
+                        <th>Fecha</th>
+                        <th>Recibo</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% pagos.forEach(function (py) { %>
+                        <tr>
+                            <td>
+                                <%= py.client_name %>
+                            </td>
+                            <td align="right">$<%= py.value %>
+                            </td>
+                            <td>
+                                <%= dateFormat(py.paid_at, "mmmm dd, yyyy" ) %>
+                            </td>
+                            <td>0<%= py.recibo_n %>
+                            </td>
+                            <td>
+                                <a href="/pagos/delete/<%= py._id %>" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
     <%- include('partials/footer'); -%>

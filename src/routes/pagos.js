@@ -1,3 +1,5 @@
+/** @module pagos */
+
 const { Router } = require("express");
 const router = Router();
 
@@ -30,7 +32,14 @@ router.get('/', async (req, res) => {
 
     res.render('index', { pagos: pagos, containers: ctdores });
 });
-
+/**
+ * Get inputs data from view/index.ejs Form and charge Pago properties
+ *  to save to database.<br> 
+ *  Later, find all pays to Client selected and calculate total pays
+ *   for update the value on database: Client.pagos_total prop.
+ * @name AddPago
+ * @api {POST} /pagos/add
+ */
 router.post('/pagos/add', async function (req, res) {
     console.log("Adding payment to database...");
 

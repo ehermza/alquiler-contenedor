@@ -6,7 +6,7 @@ const dateFormat = require('dateformat')
 
 const IndexPagos = require("./routes/pagos");
 const IndexCtdor = require("./routes/container");
-const IndexClient = require("./routes/client");
+const IndexClient = require("./routes/verpagos");
 const IndexDeuda = require('./routes/deuda');
 const app = express();
 
@@ -42,8 +42,13 @@ app.use(express.static(__dirname + '/public'));
  * @returns string
  */
 app.locals.mostrar = function (ctdorid, clientid, cliname) {
-    console.log(cliname);
+    // console.log(cliname);
     return `${ctdorid},${clientid},${cliname}`;
+};
+app.locals.getstring = function(ctdorid, nombre){
+    let idplusname = (ctdorid < 10)? '0'+ ctdorid: ctdorid;
+    idplusname += `.${nombre}`;
+    return idplusname;
 };
 app.locals.getSaldo = function (deuda, pagos) {
     return parseInt(deuda - pagos);
