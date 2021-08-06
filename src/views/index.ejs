@@ -1,5 +1,4 @@
 <%- include('partials/header'); -%>
-
 <div class="container p-4">
     <div class="row">
         <div class="col-md-5">
@@ -87,8 +86,10 @@
                             <td>0<%= py.recibo_n %>
                             </td>
                             <td>
-                                <a href="/pagos/delete/<%= py._id %>" class="btn btn-outline-danger">Delete</a>
+                                <!-- <a href="/pagos/delete/<%= py._id %>" class="btn btn-outline-danger">Delete</a> -->
+                                <button onclick="fireSweetAlert('<%= py._id %>')" class="btn btn-outline-danger">Borrar</a>
                             </td>
+
                         </tr>
                         <% }); %>
                 </tbody>
@@ -96,4 +97,5 @@
         </div>
     </div>
 </div>
+
     <%- include('partials/footer'); -%>

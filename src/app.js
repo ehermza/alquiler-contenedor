@@ -36,6 +36,7 @@ app.use('/', IndexClient);
 app.use('/', IndexDeuda);
 // local variables
 require('./database');
+
 app.use(express.static(__dirname + '/public'));
 /**
  * Function global that return client-data to /pagos/add in string format,
@@ -53,6 +54,16 @@ app.locals.getstring = function(ctdorid, nombre){
 app.locals.getSaldo = function (deuda, pagos) {
     return parseInt(deuda - pagos);
 }
+app.locals.alert = function(idPago) {
+    console.log(idPago);
+    return ({
+        title: 'Do you want to save the changes? '+ idPago,
+        showCancelButton: true,
+        confirmButtonText: `Borrar`,
+        html: true
+    });
+}
+
 // Starting...
 app.listen(app.get('port'), () => {
     console.log(`Server on port: ${app.get('port')}`);

@@ -1,2 +1,16 @@
+<script>
+    function fireSweetAlert(IdPago) {
+        Swal.fire({
+            title: 'Estás a punto de borrar un registro de Pago. ',
+            showCancelButton: true,
+            confirmButtonText: `Confirmar`
+        }).then(function (result) {
+            if (result.isConfirmed)
+                {
+                    window.location = '/pagos/delete/'+ IdPago;
+                }
+        });
+    }
+</script>
 </body>
 </html>
