@@ -6,7 +6,8 @@ const dateFormat = require('dateformat')
 
 const IndexPagos = require("./routes/pagos");
 const IndexCtdor = require("./routes/container");
-const IndexClient = require("./routes/verpagos");
+const IndexVerpa = require("./routes/verpagos");
+const IndexClient = require("./routes/clients");
 const IndexDeuda = require('./routes/deuda');
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 // importing routes
 app.use('/', IndexPagos);
+app.use('/', IndexVerpa);
 app.use('/', IndexCtdor);
 app.use('/', IndexClient);
 app.use('/', IndexDeuda);
@@ -54,7 +56,7 @@ app.locals.getstring = function(ctdorid, nombre){
 app.locals.getSaldo = function (deuda, pagos) {
     return parseInt(deuda - pagos);
 }
-app.locals.alert = function(idPago) {
+/* app.locals.alert = function(idPago) {
     console.log(idPago);
     return ({
         title: 'Do you want to save the changes? '+ idPago,
@@ -63,7 +65,7 @@ app.locals.alert = function(idPago) {
         html: true
     });
 }
-
+ */
 // Starting...
 app.listen(app.get('port'), () => {
     console.log(`Server on port: ${app.get('port')}`);

@@ -1,16 +1,21 @@
+<!-- <script src="alertas.js"></script> -->
 <script>
-    function fireSweetAlert(IdPago) {
-        Swal.fire({
-            title: 'Estás a punto de borrar un registro de Pago. ',
-            showCancelButton: true,
-            confirmButtonText: `Confirmar`
-        }).then(function (result) {
-            if (result.isConfirmed)
-                {
-                    window.location = '/pagos/delete/'+ IdPago;
-                }
-        });
-    }
+
+async function fireSweetAlert(idpago)
+ {
+    const result = await Swal.fire({
+        title: 'Estás a punto de borrar un registro de Pago. ',
+        showCancelButton: true,
+        confirmButtonText: `Confirmar`
+    });
+
+    if (result.isConfirmed) {
+        {
+            window.location = `/pagos/delete/${idpago}`
+        }
+    };
+};
+
 </script>
 </body>
 </html>
