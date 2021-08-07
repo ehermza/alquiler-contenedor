@@ -9,7 +9,7 @@ router.post('/clients/edit/:idclient', async function (req, res) {
     const cliente = await Client.findByIdAndUpdate(idclient, req.body);
 
     console.log("Update the client to database...");
-    res.redirect('/containers');
+    res.redirect('/containers?alert=200');
 });
 /*
     router.get('/verpagos/edit/:idclient', async (req, res) => {

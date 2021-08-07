@@ -33,6 +33,7 @@ router.get('/containers/unlink/:idcont', async function (req, res) {
     res.redirect('/containers');
 });
 
+/* 
 router.get('/containers/t/:id', async function (req, res) {
     const { id } = req.params;
     console.log(`get url id: ${id}`);
@@ -50,6 +51,7 @@ router.get('/containers/t/:id', async function (req, res) {
     const containers = await Container.find({ rented_by: { $ne: '' } });
     res.render('containers', { containers: containers, alert: alert });
 });
+ */
 
 /**
  * Print info from id-container and personal info from the client
@@ -86,7 +88,7 @@ router.post('/containers/edit/:getid', async (req, res) => {
     await Container.findByIdAndUpdate(getid, req.body);
     console.log("Update container # " + getid);
 
-    res.redirect('/containers');
+    res.redirect('/containers?alert=200');
 });
 
 function validar_id(req) {
@@ -141,13 +143,13 @@ router.post('/containers/add/', async (req, res) => {
     habilitar = (habilitar) ? validar_client(req) : false;
     habilitar = (habilitar) ? validar_price(req) : false;
     if (!habilitar) {
-        res.redirect('/containers/t/430');
+        res.redirect('/containers?alert=430');
         return;
     }
     const { id_container } = req.body;
     if (await isCtdorBussy(id_container)) {
     /** When the client try to add a container, will try to verify if the container exists **/ 
-        res.redirect('/containers/t/259');
+        res.redirect('/containers?alert=259');
         return;
     }
     /** Create the new Client and insert it to Client table (mongodb) **/
@@ -157,9 +159,10 @@ router.post('/containers/add/', async (req, res) => {
     console.log(`Client properties: ${cliente}`)
 
     const filter = { id_container: id_container };
+    const {price_tocharge, rented_by} = req.body;
     const update = {
-        price_tocharge: req.body.price_tocharge,
-        rented_by: req.body.rented_by,
+        price_tocharge: price_tocharge, // warning edited
+        rented_by: rented_by,           // warning edited
         rented_by_id: cliente._id,
         active: true,
     }

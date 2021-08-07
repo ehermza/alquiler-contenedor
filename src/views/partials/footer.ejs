@@ -1,21 +1,78 @@
 <!-- <script src="alertas.js"></script> -->
 <script>
-
-async function fireSweetAlert(idpago)
- {
-    const result = await Swal.fire({
-        title: 'Estás a punto de borrar un registro de Pago. ',
-        showCancelButton: true,
-        confirmButtonText: `Confirmar`
-    });
-
-    if (result.isConfirmed) {
-        {
-            window.location = `/pagos/delete/${idpago}`
-        }
+    async function fireSwalError(objeto) 
+    {
+        const {title, text, icon, timer} = objeto;
+        await Swal.fire({
+            title: title,
+            text: text,
+            icon: icon,
+            timer: timer,
+            showConfirmButton: (!timer),
+            // timerProgressBar:
+            // toast:
+            position: 'center',
+            allowOutsideClick: true,
+            showCloseButton: false,
+            confirmButtonText: 'Aceptar'
+        });
     };
-};
+
+    const url = new URL(window.location.href);
+    const alert_id = url.searchParams.get('alert');
+    console.log(url);
+
+    var message, title = "";
+    var objeto = {};
+    switch (alert_id) {
+        case '430':
+            objeto = {
+                title : "Error al agregar cliente",
+                text : "Intentalo de vuelta por favor!",
+                icon: 'error',
+                timer: undefined
+            }
+             break;
+        case '259':
+            objeto = {
+                text: "El Contenedor seleccionado ya se encuentra alquilado. Deberías desvincular Cliente en 'Editar'",
+                title : "Error al agregar cliente",
+                icon: 'error',
+                timer: undefined
+            }
+            break;
+        case '200':
+            objeto = {
+                title: 'Cliente actualizado',
+                text: 'Sus Datos fueron cargados con éxito.',
+                icon: 'success',
+                timer: 2000
+            }
+            break;
+        default:
+    };
+    if (alert_id != null) fireSwalError(objeto);
+
+    // if(alert!='') {
+    //     alertError(alert);
+    // }
+
+    async function fireSweetAlert(idpago) 
+    {
+        const result = await Swal.fire({
+            title: 'Estás a punto de borrar un registro de Pago. ',
+            showCancelButton: true,
+            confirmButtonText: `Confirmar`
+        });
+
+        if (result.isConfirmed) {
+            {
+                window.location = `/pagos/delete/${idpago}`
+            }
+        };
+    };
 
 </script>
 </body>
+
 </html>
